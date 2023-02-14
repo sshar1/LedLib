@@ -2,7 +2,11 @@ package frc.robot.subsystems;
 
 public enum LEDColor {
     PURPLE(70, 2, 115),
-    YELLOW(150, 131, 2); 
+    YELLOW(150, 131, 2),
+    RED(255, 0, 0),
+    BLUE(0, 0, 255),
+    GREEN(0, 255, 0),
+    OFF(0, 0, 0); 
 
     public int r;
     public int g;
