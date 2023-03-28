@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,6 +27,7 @@ public class Robot extends TimedRobot {
   private JoystickButton conePulse = new JoystickButton(joystick, 9);
   private JoystickButton cubePulse = new JoystickButton(joystick, 10);
 
+  // Buttons to demonstrate different modes of leds
   private void configureBindings(){
     coneButton.onTrue(new LedCommand(LEDColor.YELLOW, LEDMode.STATIC));
     cubeButton.onTrue(new LedCommand(LEDColor.PURPLE, LEDMode.STATIC));
@@ -39,13 +39,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     configureBindings();
-
-    if (DriverStation.getAlliance() == DriverStation.Alliance.Blue) {
-      led.setColor(LEDColor.BLUE);
-    }
-    else {
-      led.setColor(LEDColor.RED);
-    }
   }
 
   @Override
@@ -57,7 +50,15 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    // Turn led to alliance color (red or blue)
+    if (DriverStation.getAlliance() == DriverStation.Alliance.Blue) {
+      led.setColor(LEDColor.BLUE);
+    }
+    else {
+      led.setColor(LEDColor.RED);
+    }
+  }
 
   @Override
   public void autonomousInit() {
